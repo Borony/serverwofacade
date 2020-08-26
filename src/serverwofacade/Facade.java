@@ -3,36 +3,43 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package serverwofacade;
-public class ServerWOFacade {
-    public static void main(String[] args) {
-       
-        Facade obj = Facade.getMyFacadeObject();
-        obj.StartServer();
-        System.out.println("Start working......");
-        System.out.println("After work done.........");
-        obj.StopServer();
+
+/**
+ *
+ * @author Jetnipit Morakot
+ */
+public class Facade {
+    
+    private static Facade MyFacadeObject = null;
+    private Facade(){}
+    private ScheduleServer scheduleServer = new ScheduleServer();
+    public static Facade getMyFacadeObject()
+    {
+        if(MyFacadeObject == null)
+        {MyFacadeObject = new Facade();}
         
-        
-        
-        
-        
-        /* ScheduleServer scheduleServer = new ScheduleServer();
+        return MyFacadeObject;
+    }
+    
+    public void StartServer()
+    {
 	scheduleServer.startBooting();
 	scheduleServer.readSystemConfigFile();
 	scheduleServer.init();
 	scheduleServer.initializeContext();
 	scheduleServer.initializeListeners();
 	scheduleServer.createSystemObjects();
-	System.out.println("Start working......");
-	System.out.println("After work done.........");
+    }
+    
+    public  void StopServer()
+    {
 	scheduleServer.releaseProcesses();
 	scheduleServer.destory();
 	scheduleServer.destroySystemObjects();
 	scheduleServer.destoryListeners();
 	scheduleServer.destoryContext();
-	scheduleServer.shutdown();  */
+	scheduleServer.shutdown();
     }
     
 }
